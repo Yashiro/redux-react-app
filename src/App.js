@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connect } from './mushroom-react-redux'
 import { addGun, removeGun } from './index.redux'
 
 @connect(
