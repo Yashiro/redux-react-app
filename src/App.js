@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from './mushroom-react-redux'
-import { addGun, removeGun, addGunAsync } from './index.redux'
+import { addGun, removeGun, addGunAsync, addTwiceAndAsyncGun } from './index.redux'
 
 @connect(
     state => ({num:state}),
-    {addGun, removeGun, addGunAsync}
+    {addGun, removeGun, addGunAsync, addTwiceAndAsyncGun}
 )
 class App extends Component {
   
@@ -15,6 +15,7 @@ class App extends Component {
         <button onClick={this.props.addGun}>Apply Gun</button>
         <button onClick={this.props.removeGun}>Return Gun</button>
         <button onClick={this.props.addGunAsync}>Delay Apply Gun</button>
+        <button onClick={this.props.addTwiceAndAsyncGun}>Apply Two Gun And Delay Apply Gun</button>
       </div>
     )
   }

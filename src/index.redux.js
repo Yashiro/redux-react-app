@@ -18,6 +18,9 @@ export function addGun() {
 export function removeGun() {
     return {type: REMOVE_GUN}
 }
+export function addTwiceAndAsyncGun() {
+    return [{type: ADD_GUN}, {type: ADD_GUN}, addGunAsync()]
+}
 
 export function addGunAsync() {
     return dispatch => {
