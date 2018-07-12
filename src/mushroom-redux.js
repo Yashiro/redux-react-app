@@ -1,4 +1,8 @@
 export function createStore(reducer, enhancer) {
+    if (enhancer) {
+        return enhancer(createStore)(reducer)
+    }
+    
     let currentState = {}
     let currentListeners = []
 
@@ -17,6 +21,23 @@ export function createStore(reducer, enhancer) {
     }
     dispatch({type: '@ANDY/MUSHROOM-REDUX'})
     return { getState, subscribe, dispatch }
+}
+
+export function applyMiddleware(middleware) {
+    return createStore => (...args) => {
+        const store = createStore(...args)
+        let dispatch = store.dispatch
+
+        const midApi = {
+            getState: store.getState,
+            dispatch: (...args) => dispatch(...args)
+        }
+        dispatch = middleware(midApi)(store.dispatch)
+        return {
+            ...store,
+            dispatch
+        }
+    }
 }
 
 function bindActionCreator(creator, dispatch) {
